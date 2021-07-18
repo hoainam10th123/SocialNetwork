@@ -1,0 +1,16 @@
+.img-thumbnail{
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+}
+
+.img-block{
+    position: absolute;
+    top: 78%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.border-card{
+    border: 1px solid green;
+}

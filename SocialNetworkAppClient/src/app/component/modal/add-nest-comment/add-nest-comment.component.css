@@ -1,0 +1,16 @@
+.margin-commment{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message-body{
+    background-color: rgba(230, 225, 225, 0.603);
+    border-radius: 10px;
+    padding: 10px;
+    width: 85%;
+}
+
+.non-list-style{
+    list-style: none;
+    padding-left: 0px;
+}

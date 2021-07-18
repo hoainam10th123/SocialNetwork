@@ -1,0 +1,30 @@
+<div class="form-signin">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="text-center">
+            <img class="mb-4" src="./assets/bootstrap-logo.svg" alt="" width="72" height="57">
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        </div>        
+
+        <div class="form-floating">
+            <input type="text" class="form-control" [class.is-invalid]='loginForm.get("userName")!.errors && loginForm.get("userName")!.touched' formControlName='userName' id="floatingInput" placeholder="Username">
+            <label for="floatingInput">Username</label>
+            <div class="invalid-feedback" *ngIf="loginForm.get('userName')!.hasError('required')">Please enter UserName!</div>
+        </div>
+        <div class="form-floating">
+            <input type="password" [class.is-invalid]='loginForm.get("password")!.errors && loginForm.get("password")!.touched' class="form-control" formControlName='password' id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+            <div *ngIf="loginForm.get('password')!.hasError('required')" class="invalid-feedback">Please enter Password!</div>
+        <div *ngIf="loginForm.get('password')!.hasError('minlength')" class="invalid-feedback">Password minimum 6!</div>
+        <div *ngIf="loginForm.get('password')!.hasError('maxlength')" class="invalid-feedback">Password maximum 12!</div>
+        </div>
+        
+        <button [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        
+        <div class="text-center">
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        </div>        
+    </form>
+
+    <!-- <p>Form value: {{loginForm.value | json}}</p>
+    <p>Form status: {{loginForm.status | json}}</p> -->
+</div>

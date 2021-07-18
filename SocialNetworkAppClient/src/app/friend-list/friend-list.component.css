@@ -1,0 +1,35 @@
+.pd-contact{
+    padding: 3px;
+}
+
+.friend-list{
+    position: fixed;
+    max-width: 450px;
+    right: 1px;
+    bottom: 1px;
+    z-index: 222;
+}
+
+#contact{
+    max-height: 400px;
+    overflow: scroll;
+}
+
+#contact li{
+    list-style: none;    
+}
+
+#contact li:hover{
+     background-color: rgb(241, 237, 237);
+     border-radius: 10px;
+     cursor: pointer;
+}
+
+.label{
+    border-radius: 10px;
+}
+
+.label-u{
+    position: absolute;
+    right: -5px;
+}

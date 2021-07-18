@@ -1,0 +1,90 @@
+<!-- called in home.component.html -->
+<div class="card-header">
+    <div class="parent">
+        <div class="mr" style="position: relative;">
+            <img src="{{post.userPhotoUrl || './assets/user.png'}}" alt="" class="rounded-circle img-person">
+            <span class="online lb-pos" *ngIf="isOnline" ><i class="fa fa-circle"></i></span>
+        </div>
+        <div>
+            <a class="text-primary" style="text-decoration: none;" routerLink="/detail/{{post.username}}">{{post.displayName}}</a>
+            <div class="text-muted">{{post.datePosted | timeago}}</div>
+        </div>
+        <div class="child-right" *ngIf="(accountService.currentUser$ | async).userName === post.username">
+            <a class="btn btn-success mr"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger mr" *ngIf="post.comments.length == 0" (click)="openConfirmModal(post.id, true)"><i class="fa fa-trash"></i></a>
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <p class="card-text">
+        {{post.content}}
+    </p>
+    <div class="containerOverImg" *ngIf="post.photos.length > 0" (click)="showGallery(0)">
+        <img class="img-fluid rounded" src="{{post.photos[0].url}}" >
+        <div class="centered transparent" *ngIf="post.photos.length > 1" style="font-size: 100px;">+{{post.photos.length - 1}}</div>
+    </div>
+</div>
+<div class="card-footer">
+    <app-fb-reaction [post]="post" [countComment]="post.comments.length"></app-fb-reaction>
+</div>
+
+<div class="card-footer">
+    <ul class="non-list-style">
+        <li class="margin-commment" *ngFor="let cmt of post.comments">
+            <div class="parent">
+                <div class="mr">
+                    <img class="rounded-circle img-person" src="{{cmt.userPhotoUrl || './assets/user.png'}}" alt="">
+                </div>
+                <div class="message-body">
+                    <a class="text-primary" style="text-decoration: none;" routerLink="/detail/{{cmt.username}}">{{cmt.displayName}}</a>
+                    <span class="child-right" (click)="openConfirmModal(cmt.id, false)" *ngIf="(accountService.currentUser$ | async).userName === cmt.username"><i class="fa fa-close"></i></span>
+                    <div>{{cmt.content}}</div>
+                    <div>
+                        <small >
+                            <a class="mr10 text-muted" style="text-decoration: none;">
+                                <i class="fa fa-thumbs-o-up"></i>
+                                like
+                            </a>
+                            <a class="mr10 text-muted" style="text-decoration: none;" 
+                            (click)="openAddChildrenCommentModal(post.id, cmt.id, cmt.content)">
+                                <i class="fa fa-commenting-o"></i>
+                                Comment
+                            </a>
+                            <span class="text-muted"><i class="fa fa-clock-o"></i> {{cmt.datePosted | timeago}}</span>                            
+                            <!-- <span class="text-muted float-end"><i class="fa fa-thumbs-up text-primary"></i>10</span> -->
+                        </small>
+                    </div>                    
+                </div>               
+            </div>
+            <ul class="nest-comment" style="list-style: none;" *ngIf="cmt.countNestComment > 0" >
+                <li class="margin-commment">
+                    <p class="text-primary" (click)="openAddChildrenCommentModal(post.id, cmt.id, cmt.content)">{{cmt.countNestComment}} child comment</p>
+                </li>
+            </ul>
+        </li>                                         
+    </ul>
+</div>
+
+<div class="card-footer">
+    <form [formGroup]="cmtForm" autocomplete="off" (ngSubmit)="submitComment(post.id)">
+        <div class="form-control" tooltip="Tags" placement="top" *ngIf="isDisplayTag">
+            <select2 [data]="data" [templates]="template" [multiple]="true" 
+            (update)="updateEvent($event)" customSearchEnabled="true"
+            (search)="searchEvent($event)">              
+                <ng-template #template let-data="data">
+                <div class="d-flex align-items-center">
+                    <div class="mr"><img src="{{data?.url}}" alt="" style="max-height: 50px;" class="rounded-circle"></div>
+                    <div style="font-weight: bold;">{{data?.name}}</div>
+                </div>   
+                </ng-template>              
+            </select2>
+        </div>
+        <div class="input-group">
+            <input type="text" formControlName='content' name="content" class="form-control input-sm"
+                placeholder="comment here..." (focus)="focusEvent()">            
+            <div class="input-group-append">
+                <button [disabled]="!cmtForm.valid" class="btn btn-primary" type="submit">submit</button>
+            </div>
+        </div>        
+    </form>
+</div>

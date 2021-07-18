@@ -1,0 +1,24 @@
+
+#dropdown-basic li{
+    cursor: pointer;
+}
+
+.parent{
+    display: flex;
+    flex-direction:row;
+}
+
+img{
+    max-height: 32px;
+}
+
+.scroll-max-height{
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.label{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}

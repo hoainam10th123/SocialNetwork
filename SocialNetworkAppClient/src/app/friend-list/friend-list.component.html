@@ -1,0 +1,29 @@
+<!-- called in app.component.html -->
+<div class="card friend-list">
+    <div class="card-header">
+        <h4 class="text-primary">Friend list</h4>
+    </div>
+    <div class="card-body">
+        <ul id="contact" style="padding-left: 0px;">
+            <li class="pd-contact" *ngFor="let item of (presence.onlineUsers$ | async)" (click)="selectUser(item)">
+                <div class="d-flex">
+                    <div class="mr" style="position: relative;">
+                        <img src="{{item.photoUrl || './assets/user.png'}}" alt="" class="rounded-circle img-person">
+                        <span class="badge label-u label-danger" *ngIf="item.unReadMessageCount > 0">{{item.unReadMessageCount}}</span>
+                    </div>
+                    <div>
+                        <div class="displayName">{{item.displayName}}</div>
+                        <div class="label text-success">Online</div>
+                    </div>
+                </div>
+            </li>            
+        </ul>
+    </div>
+    <div class="card-footer">
+        <div class="text-success text-center">{{(presence.onlineUsers$ | async).length}} online</div>
+    </div>
+</div>
+
+<div>
+    <app-chat-box *ngFor="let item of chatBoxUsers" [right]="item.right" [user]="item.user" (removeChatBox)="removeChatBox($event)" (activedChatBoxEvent)="activedChatBox($event)"></app-chat-box>
+</div>

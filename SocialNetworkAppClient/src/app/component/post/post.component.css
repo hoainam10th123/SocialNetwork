@@ -1,0 +1,91 @@
+.parent{
+    display: flex;
+    flex-direction:row;
+}
+
+.displayName{
+    font-weight: bold;
+}
+
+.child-right{
+    margin-left: auto;
+    order: 2;
+}
+
+.margin-commment{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.message-body{
+    background-color: rgba(230, 225, 225, 0.603);
+    border-radius: 10px;
+    padding: 10px;
+    width: 85%;
+}
+
+.non-list-style{
+    list-style: none;
+    padding-left: 0px;
+}
+
+.card-footer a:hover{
+    background-color: rgb(241, 237, 237);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nest-comment{
+    padding-left: 50px;
+}
+
+.containerOverImg {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mr10{
+    margin-right: 10px;
+}
+
+.lb-pos{
+    position: absolute;
+    right: -2px;
+    bottom: 1px;
+}
+
+@keyframes fa-blink {
+    0% {opacity: 1;}
+    100% {opacity: 0.6;}
+}
+
+.online{
+    color: forestgreen;
+    animation: fa-blink 1.5s linear infinite;
+}
+
+.fa-circle {
+    text-shadow: 0 0 5px purple;
+}
+
+.transparent{
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    border-radius: 20px; 
+}
+
+.child-right{
+    float: right;
+}
+
+ul li p:hover{
+    cursor: pointer;
+}

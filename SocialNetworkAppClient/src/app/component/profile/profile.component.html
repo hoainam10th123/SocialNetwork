@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-4" *ngIf="(accountService.currentUser$ | async) as user">
+        <h3 class="text-center text-primary">{{user.displayName}}</h3>
+        <div class="card">
+            <img src="{{user.photoUrl || './assets/user.png'}}" alt="" class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>User name:</strong>
+                    <p>{{user.userName}}</p>
+                </div>
+                <div>
+                    <strong>Last active</strong>
+                    <p>{{user.lastActive | timeago}}</p>
+                </div>
+                <div>
+                    <strong>Date of birth</strong>
+                    <p>{{user.dayOfBirth | date: 'dd-MM-yyyy'}}</p>
+                </div>                                  
+            </div>            
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button">Ban dang nghi gi?</button>
+                </div>
+            </div>
+        </div>
+        <div class="card border-card" *ngFor="let item of posts">
+            <app-post [post]="item"></app-post>
+        </div>
+    </div>
+</div>

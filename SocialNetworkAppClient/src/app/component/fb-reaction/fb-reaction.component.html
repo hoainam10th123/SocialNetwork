@@ -1,0 +1,41 @@
+<!-- called in post.component.html -->
+<a class="btn text-muted" *ngIf="post.postLikeByUsers.length > 0" (click)="openModalLoadLike()">{{post.postLikeByUsers.length}}</a>
+<!-- fa-thumbs-up -->
+<a class="btn facebook-reaction" (mouseover)="hover()" (mouseout)="mOut()">
+    <span (click)="unLike()">
+        <i class="fa fa-thumbs-o-up"></i>
+        like
+        <img src="./assets/fb-reaction-icon/like.gif" style="height: 30px;" *ngIf="likeReaction == 2">
+        <img src="./assets/fb-reaction-icon/love.gif" style="height: 30px;" *ngIf="likeReaction == 3">
+        <img src="./assets/fb-reaction-icon/haha.gif" style="height: 30px;" *ngIf="likeReaction == 1">
+        <img src="./assets/fb-reaction-icon/wow.gif" style="height: 30px;" *ngIf="likeReaction == 5">
+        <img src="./assets/fb-reaction-icon/sad.gif" style="height: 30px;" *ngIf="likeReaction == 4">
+        <img src="./assets/fb-reaction-icon/anrgy.gif" style="height: 30px;" *ngIf="likeReaction == 0">
+        <img src="./assets/fb-reaction-icon/yay.gif" style="height: 30px;" *ngIf="likeReaction == 6">
+    </span>
+    <div class="reactions-box d-flex align-items-center" [ngClass]="{'d-none': isDisplay}" >
+        <div class="reaction" tooltip="Like" placement="top" (click)='clickReaction("like")'>
+            <img src="./assets/fb-reaction-icon/like.gif">          
+        </div>
+        <div class="reaction" tooltip="Love" placement="top" (click)='clickReaction("love")'>  
+            <img src="./assets/fb-reaction-icon/love.gif">       
+        </div>
+        <div class="reaction" tooltip="Haha" placement="top" (click)='clickReaction("haha")'>
+            <img src="./assets/fb-reaction-icon/haha.gif">
+        </div>
+        <div class="reaction" tooltip="Wow" placement="top" (click)='clickReaction("wow")'>
+            <img src="./assets/fb-reaction-icon/wow.gif" >
+        </div>
+        <div class="reaction" tooltip="Sad" placement="top" (click)='clickReaction("sad")'>
+            <img src="./assets/fb-reaction-icon/sad.gif" >
+        </div>
+        <div class="reaction" tooltip="Anrgy" placement="top" (click)='clickReaction("anrgy")'>
+            <img src="./assets/fb-reaction-icon/anrgy.gif" >
+        </div>
+        <div class="reaction" tooltip="Yay" placement="top" (click)='clickReaction("yay")'>
+            <img src="./assets/fb-reaction-icon/yay.gif" >
+        </div>
+    </div>    
+</a>
+<a style="float: right;" class="btn text-muted" *ngIf="countComment > 0">{{countComment}} comments</a>
+

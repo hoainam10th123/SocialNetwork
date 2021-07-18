@@ -1,0 +1,59 @@
+<div class="container">
+    <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a (click)="active('undefined')" routerLink="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <h3 class="text-primary">Social Network</h3>
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li (click)="active('home')"><a class="nav-link px-2 link-secondary h3" routerLink="" *ngIf="accountService.currentUser$ | async"><i class="fa fa-home" [ngClass]="{'text-primary': selectedMenuItem === 'home'}" aria-hidden="true"></i></a></li>
+            
+            <li (click)="active('login')"><a class="nav-link px-2 link-dark" routerLink="/login" routerLinkActive='active' *ngIf="!(accountService.currentUser$ | async)"><i class="fa fa-sign-in h3" [ngClass]="{'text-primary': selectedMenuItem === 'login'}" aria-hidden="true"></i></a></li>
+            <li (click)="active('register')"><a class="nav-link px-2 link-dark" routerLink="/register" routerLinkActive='active' *ngIf="!(accountService.currentUser$ | async)"><i class="fa fa-registered h3" [ngClass]="{'text-primary': selectedMenuItem === 'register'}" aria-hidden="true"></i></a></li>            
+            <li (click)="active('chat')">
+                <a style="position: relative;" class="nav-link px-2 link-dark d-block d-sm-none" routerLink="/chat">
+                    <i class="fa fa-comments h3" [ngClass]="{'text-primary': selectedMenuItem === 'chat'}" aria-hidden="true"></i>
+                    <span class="badge label bg-danger" *ngIf="(dataUnread.countUnreadMessage$ | async) > 0" >{{dataUnread.countUnreadMessage$ | async}}</span>
+                </a>
+            </li>
+            
+            <div class="btn-group" dropdown (click)="active('notification')" *ngIf="(accountService.currentUser$ | async)">
+                <a style="position: relative;" id="button-basic" dropdownToggle class="btn" aria-controls="dropdown-basic" (click)="loadNotifications()">
+                    <i class="fa fa-bell h3" [ngClass]="{'text-primary':selectedMenuItem === 'notification'}"></i>
+                    <span class="badge label bg-danger" *ngIf="countNotification > 0">{{countNotification}}</span>
+                </a>
+                <ul style="padding: 10px;" id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <h3 class="text-primary">Notification</h3>
+                    <div class="scroll-max-height">                        
+                        <li role="menuitem" style="padding-top: 5px; padding-bottom: 5px;" *ngFor="let item of notifications">                     
+                            <div class="parent dropdown-item" style="padding: 0px; font-size: 12px;">
+                                <div class="mr"><img src="./assets/user.png" alt="" class="rounded-circle"></div>                                      
+                                <div>
+                                    <div>{{item.content}}</div>
+                                    <div class="text-primary">{{item.dateCreated | timeago}}</div> 
+                                </div>                          
+                           </div>
+                        </li>
+                    </div>                                                       
+                </ul>
+            </div>
+            <li (click)="active('profile')"><a class="nav-link px-2 link-dark h3" routerLink="/profile" *ngIf="accountService.currentUser$ | async"><i class="fa fa-user-circle-o" [ngClass]="{'text-primary': selectedMenuItem === 'profile'}" aria-hidden="true"></i></a></li>
+            <li (click)="active('about')"><a class="nav-link px-2 link-dark h3" routerLink="/about" ><i class="fa fa-info-circle" aria-hidden="true" [ngClass]="{'text-primary': selectedMenuItem === 'about'}"></i></a></li>
+        </ul>
+
+        <div class="btn-group" dropdown *ngIf="(accountService.currentUser$ | async) as user">
+            <button id="button-basic" dropdownToggle type="button" class="btn dropdown-toggle btn-outline-primary"
+                aria-controls="dropdown-basic">
+                <img tooltip="{{user.displayName}}" placement="left" class="rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" alt=""> <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" routerLink="/avarta-managed">Avarta</a></li>
+                <li role="menuitem"><a class="dropdown-item" routerLink="/edit-information">Not found</a>
+                </li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="logout()">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+</div>

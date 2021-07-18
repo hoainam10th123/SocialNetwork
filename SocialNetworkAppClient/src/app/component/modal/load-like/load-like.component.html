@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left text-primary">User like post</h4>
+    <button type="button" class="close pull-right btn btn-default" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body" style="max-height: 250px; overflow-y: scroll;">
+    <div class="d-flex align-items-center" *ngFor="let item of userLikePosts" style="padding: 4px;">
+        <div class="mr"><img src="{{item.userPhotoUrl || './assets/user.png'}}" alt="" class="rounded-circle img-person"></div>
+        <div class="mr">{{item.displayName}}</div>
+        <div class="mr">
+            <img src="./assets/fb-reaction-icon/like.gif" style="height: 30px;" *ngIf="item.likeReaction == 2">
+            <img src="./assets/fb-reaction-icon/love.gif" style="height: 30px;" *ngIf="item.likeReaction == 3">
+            <img src="./assets/fb-reaction-icon/haha.gif" style="height: 30px;" *ngIf="item.likeReaction == 1">
+            <img src="./assets/fb-reaction-icon/wow.gif" style="height: 30px;" *ngIf="item.likeReaction == 5">
+            <img src="./assets/fb-reaction-icon/sad.gif" style="height: 30px;" *ngIf="item.likeReaction == 4">
+            <img src="./assets/fb-reaction-icon/anrgy.gif" style="height: 30px;" *ngIf="item.likeReaction == 0">
+            <img src="./assets/fb-reaction-icon/yay.gif" style="height: 30px;" *ngIf="item.likeReaction == 6">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">    
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

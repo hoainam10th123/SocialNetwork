@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left text-primary">Add children comment</h4>
+    <button type="button" class="close pull-right btn btn-default" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">    
+    <div class="card">       
+        <p>{{noiDung}}</p>        
+        <div class="card-body">
+            <ul class="non-list-style" style="max-height: 350px; overflow-y: scroll;">
+                <li class="margin-commment" *ngFor="let cmt of comments">
+                    <div class="d-flex">
+                        <div class="mr">
+                            <img class="rounded-circle img-person" src="{{cmt.userPhotoUrl || './assets/user.png'}}" alt="">
+                        </div>
+                        <div class="message-body">
+                            <a class="text-primary" style="text-decoration: none;" routerLink="/detail/{{cmt.username}}">{{cmt.displayName}}</a>                            
+                            <div>{{cmt.content}}</div>
+                            <div>
+                                <small >
+                                    <a class="mr10 text-muted" style="text-decoration: none;">
+                                        <i class="fa fa-thumbs-o-up"></i>
+                                        like
+                                    </a>                                    
+                                    <span class="text-muted"><i class="fa fa-clock-o"></i> {{cmt.datePosted | timeago}}</span>                            
+                                    <!-- <span class="text-muted float-end"><i class="fa fa-thumbs-up text-primary"></i>10</span> -->
+                                </small>
+                            </div>                    
+                        </div>               
+                    </div>            
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form [formGroup]="form">
+        <div class="mb-3">
+            <textarea formControlName='content' name="content" rows="2" class="form-control"></textarea>            
+        </div>        
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" [disabled]="!form.valid" (click)="saveChildrenComment()" class="btn btn-primary">Add</button>
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

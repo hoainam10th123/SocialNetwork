@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <tabset>
+            <tab heading="Edit Avatar">
+                <app-avatar-editor [member]="member"></app-avatar-editor>
+            </tab>
+            <tab heading="Edit Image cover">Image cover</tab>
+            <tab heading="Edit Information">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <div class="alert alert-info">
+                            <strong>Information:</strong>Chua thuc hien chuc nang nay
+                        </div>
+                        <div>
+                            <form id=editForm #editForm="ngForm">
+                                <div class="mb-3">
+                                    <label for="displayName" class="form-label">Display Name</label>
+                                    <input type="text" class="form-control" id="displayName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dayofBirth" class="form-label">Day of birth</label>
+                                    <input type="date" class="form-control" id="dayofBirth">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>

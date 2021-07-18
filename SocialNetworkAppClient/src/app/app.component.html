@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+
+<ngx-spinner>
+  <h3>Loading...</h3>
+</ngx-spinner>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<div style="position: relative;" class="d-none d-sm-block"> 
+  <app-friend-list *ngIf="(accountService.currentUser$ | async)"></app-friend-list>
+</div>

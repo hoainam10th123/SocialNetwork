@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" (click)="openModalWithComponent()" type="button">Ban dang nghi
+                        gi?</button>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+            <pagination [boundaryLinks]="true" [maxSize]="maxSize" [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                lastText="&raquo;">
+            </pagination>
+        </div>
+        
+        <div class="card border-card" *ngFor="let item of posts">
+            <app-post [post]="item"></app-post>
+        </div>
+        <br/>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+            <pagination [boundaryLinks]="true" [maxSize]="maxSize" [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+                (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                lastText="&raquo;">
+            </pagination>
+        </div>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
